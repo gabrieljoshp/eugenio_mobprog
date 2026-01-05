@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 1:
         return 'Notifications';
       case 2:
-        return 'Profile';
+        return 'Gabriel Josh Eugenio';
       default:
         return 'MukhangLibro';
     }

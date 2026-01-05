@@ -13,6 +13,12 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final List<String> _photos = [
+    'assets/images/owl.jpg',
+    'assets/images/owl2.jpg',
+    'assets/images/owl3.jpg',
+    'assets/images/owl4.jpg',
+  ];
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -31,8 +37,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     decoration: BoxDecoration(
                       color: Colors.grey[300],
                       image: const DecorationImage(
-                        image: NetworkImage(''),
-                        fit: BoxFit.cover,
+                        image: AssetImage('assets/images/owl5.jpg'),
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
@@ -171,7 +177,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           postContent: 'Kamusta',
                           numOfLikes: 100,
                           date: 'October 11',
-                          avatarImage: 'assets/icons/icon_1.jpg',
+                          avatarImage: 'assets/icons/icon_2.jpg',
                         ),
                         PostCard(
                           userName: 'Gabriel Josh Eugenio',
@@ -209,28 +215,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                       ),
                     ),
-                    GridView.builder(
+                    Padding(
                       padding: EdgeInsets.all(ScreenUtil().setSp(10)),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: ScreenUtil().setSp(10),
-                        mainAxisSpacing: ScreenUtil().setSp(10),
-                      ),
-                      itemCount: 1,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          decoration: BoxDecoration(
+                      child: GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: _photos.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount:
+                              MediaQuery.of(context).size.width > 500 ? 3 : 2,
+                          crossAxisSpacing: ScreenUtil().setSp(10),
+                          mainAxisSpacing: ScreenUtil().setSp(10),
+                          childAspectRatio: 1,
+                        ),
+                        itemBuilder: (context, index) {
+                          final img = _photos[index];
+                          return ClipRRect(
                             borderRadius: BorderRadius.circular(
                               ScreenUtil().setSp(8),
                             ),
-                            color: Colors.grey[300],
-                            image: const DecorationImage(
-                              image: AssetImage('assets/images/owl.jpg'),
-                              fit: BoxFit.cover,
+                            child: InkWell(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (_) => Dialog(
+                                    child: InteractiveViewer(
+                                      child: Image.asset(
+                                        img,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Image.asset(img, fit: BoxFit.cover),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),

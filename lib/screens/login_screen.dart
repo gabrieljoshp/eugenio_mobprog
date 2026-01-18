@@ -2,6 +2,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custom_textformfield.dart';
 import '../widgets/custom_inkwell_button.dart';
+import '../widgets/custom_dialogs.dart';
 import '../constants.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -15,6 +16,54 @@ class _LogInScreenState extends State<LogInScreen> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  // Validation method for username
+  String? _validateUsername(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Enter your username';
+    }
+    if (value.length < 3) {
+      return 'Username must be at least 3 characters';
+    }
+    return null;
+  }
+
+  // Validation method for password
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Enter your password';
+    }
+    if (value.length < 8) {
+      return 'Password must be at least 8 characters';
+    }
+    return null;
+  }
+
+  // Login validation and dialog display
+  void _handleLogin() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+
+      // Save username to shared preferences or local storage
+      final username = usernameController.text;
+
+      customDialog(
+        context,
+        title: 'Login Successful!',
+        content: 'Welcome, $username!',
+      ).then((_) {
+        // Navigate to profile screen after dialog
+        Navigator.pushReplacementNamed(context, '/home', arguments: username);
+      });
+    } else {
+      // Show validation error dialog
+      customDialog(
+        context,
+        title: 'Invalid Input',
+        content: 'Please check all fields and try again.',
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +97,8 @@ class _LogInScreenState extends State<LogInScreen> {
                         height: ScreenUtil().setHeight(10),
                         width: ScreenUtil().setWidth(10),
                         controller: usernameController,
-                        validator: (value) =>
-                            value?.isEmpty ? 'Enter your username' : null,
-                        onSaved: (value) => usernameController = value!,
+                        validator: _validateUsername,
+                        onSaved: (value) => usernameController.text = value!,
                         fontSize: ScreenUtil().setSp(15),
                         fontColor: FB_DARK_PRIMARY,
                         hintTextSize: ScreenUtil().setSp(15),
@@ -62,9 +110,8 @@ class _LogInScreenState extends State<LogInScreen> {
                         width: ScreenUtil().setWidth(10),
                         controller: passwordController,
                         isObscure: true,
-                        validator: (value) =>
-                            value?.isEmpty ? 'Enter your password' : null,
-                        onSaved: (value) => passwordController = value!,
+                        validator: _validatePassword,
+                        onSaved: (value) => passwordController.text = value!,
                         fontSize: ScreenUtil().setSp(15),
                         fontColor: FB_DARK_PRIMARY,
                         hintTextSize: ScreenUtil().setSp(15),
@@ -72,11 +119,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       ),
                       SizedBox(height: ScreenUtil().setHeight(50)),
                       CustomInkwellButton(
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-                          }
-                        },
+                        onTap: _handleLogin,
                         height: ScreenUtil().setHeight(40),
                         width: ScreenUtil().screenWidth,
                         buttonName: 'Login',

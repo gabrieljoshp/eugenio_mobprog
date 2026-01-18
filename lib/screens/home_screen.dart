@@ -18,6 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
+  String? username;
+
   String _getAppBarTitle() {
     switch (_selectedIndex) {
       case 0:
@@ -25,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 1:
         return 'Notifications';
       case 2:
-        return 'Gabriel Josh Eugenio';
+        return username ?? 'Profile';
       default:
         return 'MukhangLibro';
     }
@@ -33,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    username ??= ModalRoute.of(context)?.settings.arguments as String?;
     return Scaffold(
       appBar: AppBar(
         shadowColor: FB_TEXT_COLOR_WHITE,

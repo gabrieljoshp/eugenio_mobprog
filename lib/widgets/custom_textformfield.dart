@@ -6,7 +6,7 @@ import '../constants.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class CustomTextFormField extends StatelessWidget {
+class CustomTextFormField extends StatefulWidget {
   CustomTextFormField({
     super.key,
     required this.validator,
@@ -38,17 +38,41 @@ class CustomTextFormField extends StatelessWidget {
   int maxLength;
 
   @override
+  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
+}
+
+class _CustomTextFormFieldState extends State<CustomTextFormField> {
+  late bool _obscureText;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = widget.isObscure;
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: validator,
-      onSaved: onSaved,
-      controller: controller,
-      obscureText: isObscure,
-      keyboardType: keyboardType,
-      inputFormatters: [LengthLimitingTextInputFormatter(maxLength)],
-      style: TextStyle(fontSize: fontSize, color: fontColor),
+      validator: widget.validator,
+      onSaved: widget.onSaved,
+      controller: widget.controller,
+      obscureText: _obscureText,
+      keyboardType: widget.keyboardType,
+      inputFormatters: [LengthLimitingTextInputFormatter(widget.maxLength)],
+      style: TextStyle(fontSize: widget.fontSize, color: widget.fontColor),
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(width, height, width, height),
+        contentPadding: EdgeInsets.fromLTRB(
+          widget.width,
+          widget.height,
+          widget.width,
+          widget.height,
+        ),
         focusColor: Colors.black12,
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: FB_DARK_PRIMARY, width: 2),
@@ -70,11 +94,20 @@ class CustomTextFormField extends StatelessWidget {
         filled: true,
         hintStyle: TextStyle(
           color: Colors.black12,
-          fontSize: hintTextSize,
+          fontSize: widget.hintTextSize,
           fontFamily: 'Frutiger',
         ),
-        hintText: hintText,
-        fillColor: fillColor,
+        hintText: widget.hintText,
+        fillColor: widget.fillColor,
+        suffixIcon: widget.isObscure
+            ? IconButton(
+                icon: Icon(
+                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                  color: FB_DARK_PRIMARY,
+                ),
+                onPressed: _togglePasswordVisibility,
+              )
+            : null,
       ),
     );
   }

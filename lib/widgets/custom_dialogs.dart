@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
-customDialog(BuildContext context, {required title, required content}) {
-  AlertDialog alertDialog = AlertDialog(
-    title: Text(title),
-    content: Text(content),
-    actions: <Widget>[
-      ElevatedButton(
-        child: Text('Okay'),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: FB_DARK_PRIMARY,
-          foregroundColor: Colors.white,
-        ),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-      ),
-    ],
-  );
-
-  showDialog(
+Future<void> customDialog(
+  BuildContext context, {
+  required String title,
+  required String content,
+}) {
+  return showDialog(
     context: context,
+    barrierDismissible: false, // user must tap Okay
     builder: (BuildContext context) {
-      return alertDialog;
+      return AlertDialog(
+        title: Text(title),
+        content: Text(content),
+        actions: <Widget>[
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: FB_DARK_PRIMARY,
+              foregroundColor: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop(); // completes the Future
+            },
+            child: const Text('Okay'),
+          ),
+        ],
+      );
     },
   );
 }

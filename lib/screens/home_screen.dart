@@ -49,10 +49,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: PageView(
         controller: _pageController,
-        children: const <Widget>[
+        children: <Widget>[
           NewsFeedScreen(),
           NotificationScreen(),
-          ProfileScreen(),
+          ProfileScreen(username: username ?? ''),
         ],
         onPageChanged: (page) {
           setState(() {

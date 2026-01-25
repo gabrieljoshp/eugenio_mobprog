@@ -5,6 +5,7 @@ import '../constants.dart';
 import 'custom_font.dart';
 
 class PostCard extends StatelessWidget {
+  final String username;
   final String userName;
   final String postContent;
   final String date;
@@ -15,6 +16,7 @@ class PostCard extends StatelessWidget {
 
   const PostCard({
     super.key,
+    this.username = '',
     required this.userName,
     required this.postContent,
     this.numOfLikes = 0,

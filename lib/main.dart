@@ -29,7 +29,12 @@ class MainApp extends StatelessWidget {
             '/home': (context) => const HomeScreen(),
             '/login': (context) => const LogInScreen(),
             '/register': (context) => const RegisterScreen(),
-            '/profile': (context) => const ProfileScreen(),
+            '/profile': (context) {
+              final username =
+                  ModalRoute.of(context)!.settings.arguments as String;
+
+              return ProfileScreen(username: username);
+            },
           },
         );
       },

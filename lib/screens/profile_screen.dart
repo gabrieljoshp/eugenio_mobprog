@@ -4,6 +4,7 @@ import 'package:eugenio_mobprog/widgets/custom_font.dart';
 import 'package:eugenio_mobprog/widgets/post_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String username;
@@ -37,12 +38,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   Container(
                     height: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/owl5.jpg'),
-                        fit: BoxFit.fill,
-                      ),
+                    width: ScreenUtil().screenWidth,
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          'https://base-prod.rspb-prod.magnolia-platform.com/.imaging/focalpoint/_WIDTH_x_HEIGHT_/dam/jcr:6b996ece-dc81-4bb7-88cd-1d0263d8b5d4/585246779-Species-Little-Owl-ADULT-Stood-on-fence-with-green-blurred-background.jpg',
+                      fit: BoxFit.cover,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) =>
+                              CircularProgressIndicator(
+                                color: FB_DARK_PRIMARY,
+                                value: downloadProgress.progress,
+                              ),
+                      errorWidget: (context, url, error) =>
+                          Icon(Icons.error, size: 100.sp),
                     ),
                   ),
                   Positioned(
@@ -53,8 +61,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         const CircleAvatar(
                           radius: 50,
-                          backgroundImage: AssetImage(
-                            'assets/icons/icon_2.jpg',
+                          backgroundImage: CachedNetworkImageProvider(
+                            'https://scontent.fmnl13-2.fna.fbcdn.net/v/t39.30808-6/406526794_7259777220712504_6101170190107026818_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFD_niNN58K1JGJo4g7_UDECrOkklt8aEQKs6SSW3xoRLrPmjRye9OkRWXVWTr5qFl5fSVzwOy86nlTYngx6GUr&_nc_ohc=Pn9xhw9o7hQQ7kNvwFZxGgH&_nc_oc=AdmOXfmXF_sPxDZWUxZGTEIDpuFBOV8HSInIS-KiEG_9IgY0NiBog8NPzeKuxIKCPNI&_nc_zt=23&_nc_ht=scontent.fmnl13-2.fna&_nc_gid=wt12lHyTuLD-H-PMJ0uOpg&oh=00_Afq8V4QdMYX-0UMTbS4Lycu01QhzbbrPoHD76tKL0v4Vog&oe=697C6FC7',
                           ),
                         ),
                         Positioned(
@@ -174,23 +182,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: TabBarView(
                   children: [
                     ListView(
-                      children: const [
+                      children: [
                         PostCard(
                           userName: 'Gabriel Josh Eugenio',
                           postContent: 'Kamusta',
-                          numOfLikes: 100,
+                          numOfLikes: 2000,
                           date: 'October 11',
-                          avatarImage: 'assets/icons/icon_2.jpg',
+                          profileImageUrl:
+                              'https://scontent.fmnl13-2.fna.fbcdn.net/v/t39.30808-6/406526794_7259777220712504_6101170190107026818_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFD_niNN58K1JGJo4g7_UDECrOkklt8aEQKs6SSW3xoRLrPmjRye9OkRWXVWTr5qFl5fSVzwOy86nlTYngx6GUr&_nc_ohc=Pn9xhw9o7hQQ7kNvwFZxGgH&_nc_oc=AdmOXfmXF_sPxDZWUxZGTEIDpuFBOV8HSInIS-KiEG_9IgY0NiBog8NPzeKuxIKCPNI&_nc_zt=23&_nc_ht=scontent.fmnl13-2.fna&_nc_gid=wt12lHyTuLD-H-PMJ0uOpg&oh=00_Afq8V4QdMYX-0UMTbS4Lycu01QhzbbrPoHD76tKL0v4Vog&oe=697C6FC7',
+                          imageUrl:
+                              'https://inaturalist-open-data.s3.amazonaws.com/photos/1307188/large.jpg',
                         ),
                         PostCard(
                           userName: 'Gabriel Josh Eugenio',
                           postContent:
                               'Kicking off the holiday season with ICpEP-NCR!',
                           numOfLikes: 200,
-                          hasImage: true,
                           date: 'December 2',
-                          avatarImage: 'assets/icons/icon_2.jpg',
-                          imagePath: 'assets/images/owl.jpg',
+                          profileImageUrl:
+                              'https://scontent.fmnl13-2.fna.fbcdn.net/v/t39.30808-6/406526794_7259777220712504_6101170190107026818_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFD_niNN58K1JGJo4g7_UDECrOkklt8aEQKs6SSW3xoRLrPmjRye9OkRWXVWTr5qFl5fSVzwOy86nlTYngx6GUr&_nc_ohc=Pn9xhw9o7hQQ7kNvwFZxGgH&_nc_oc=AdmOXfmXF_sPxDZWUxZGTEIDpuFBOV8HSInIS-KiEG_9IgY0NiBog8NPzeKuxIKCPNI&_nc_zt=23&_nc_ht=scontent.fmnl13-2.fna&_nc_gid=wt12lHyTuLD-H-PMJ0uOpg&oh=00_Afq8V4QdMYX-0UMTbS4Lycu01QhzbbrPoHD76tKL0v4Vog&oe=697C6FC7',
                         ),
                       ],
                     ),

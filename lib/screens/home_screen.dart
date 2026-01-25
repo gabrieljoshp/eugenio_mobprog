@@ -38,12 +38,13 @@ class _HomeScreenState extends State<HomeScreen> {
     username ??= ModalRoute.of(context)?.settings.arguments as String?;
     return Scaffold(
       appBar: AppBar(
-        shadowColor: FB_TEXT_COLOR_WHITE,
+        backgroundColor: FB_DARK_PRIMARY,
+        shadowColor: FB_PRIMARY,
         elevation: 2,
         title: CustomFont(
           text: _getAppBarTitle(),
           fontSize: ScreenUtil().setSp(25),
-          color: FB_PRIMARY,
+          color: FB_TEXT_COLOR_WHITE,
           fontFamily: 'Klavika',
         ),
       ),
@@ -61,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         showSelectedLabels: false, //selected item
         showUnselectedLabels: false, //unselected item
         onTap: _onTappedBar,

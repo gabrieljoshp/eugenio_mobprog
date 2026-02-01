@@ -55,7 +55,7 @@ class _LogInScreenState extends State<LogInScreen> {
     if (value == null || value.isEmpty) {
       return 'Enter your password';
     }
-    if (value.length < 4) {
+    if (value.length < 8) {
       return 'Password must be at least 8 characters';
     }
     return null;
@@ -111,7 +111,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   child: Column(
                     children: [
                       Image.asset(
-                        'assets/images/NUCCITLogo_Black.png',
+                        'assets/images/MukhangLibroIcon.png',
                         height: ScreenUtil().setHeight(200),
                       ),
                       SizedBox(height: ScreenUtil().setHeight(30)),

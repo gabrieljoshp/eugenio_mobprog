@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import '../widgets/custom_loading_indicator.dart';
 import '../constants.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -34,11 +35,9 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/NUCCITLogo_Black.png'),
-            SizedBox(height: ScreenUtil().setHeight(120)),
-            const CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(FB_DARK_PRIMARY),
-            ),
+            Image.asset('assets/images/MukhangLibroIcon.png'),
+            SizedBox(height: ScreenUtil().setHeight(150)),
+            const CustomLoadingIndicator(dotSize: 15, color: FB_DARK_PRIMARY),
           ],
         ),
       ),

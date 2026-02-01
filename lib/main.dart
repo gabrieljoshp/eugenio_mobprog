@@ -24,7 +24,7 @@ class MainApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Facebook Replication',
-          initialRoute: '/login',
+          initialRoute: '/splash',
           routes: {
             '/newsfeed': (context) => const NewsFeedScreen(),
             '/home': (context) => const HomeScreen(username: 'user'),

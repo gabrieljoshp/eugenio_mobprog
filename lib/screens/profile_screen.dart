@@ -270,46 +270,37 @@ Widget _photos(BuildContext context) {
     crossAxisCount: 2,
     children: <Widget>[
       GestureDetector(
-        child: Image.network(
-          'https://www.petplace.com/article/breed/media_15ad72c2fdb39acf09aafa9934912c89bfa08665a.jpeg?width=1200&format=pjpg&optimize=medium',
-          scale: 10,
+        child: Container(
+          padding: const EdgeInsets.all(0),
+          child: Image.asset('assets/images/owl.jpg', fit: BoxFit.cover),
         ),
         onTap: () => CustomShowImageDialog(
           context,
-          imageUrl:
-              'https://www.petplace.com/article/breed/media_15ad72c2fdb39acf09aafa9934912c89bfa08665a.jpeg?width=1200&format=pjpg&optimize=medium',
+          imageUrl: 'assets/images/owl.jpg',
+          isAsset: true,
         ),
       ),
       GestureDetector(
+        child: Container(
+          padding: const EdgeInsets.all(0),
+          color: Colors.teal[300],
+          child: Image.asset('assets/images/owl2.jpg'),
+        ),
         onTap: () => CustomShowImageDialog(
           context,
-          imageUrl:
-              'https://www.petplace.com/article/breed/media_15ad72c2fdb39acf09aafa9934912c89bfa08665a.jpeg?width=1200&format=pjpg&optimize=medium',
-        ),
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          color: Colors.teal[100],
-          child: Image.network(
-            'https://www.petplace.com/article/breed/media_15ad72c2fdb39acf09aafa9934912c89bfa08665a.jpeg?width=1200&format=pjpg&optimize=medium',
-          ),
+          imageUrl: 'assets/images/owl2.jpg',
+          isAsset: true,
         ),
       ),
       GestureDetector(
+        child: Container(
+          padding: const EdgeInsets.all(0),
+          child: Image.asset('assets/images/owl3.jpg'),
+        ),
         onTap: () => CustomShowImageDialog(
           context,
-          imageUrl:
-              'https://www.petplace.com/article/breed/media_15ad72c2fdb39acf09aafa9934912c89bfa08665a.jpeg?width=1200&format=pjpg&optimize=medium',
-        ),
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Colors.teal[200],
-            image: DecorationImage(
-              image: NetworkImage(
-                'https://www.petplace.com/article/breed/media_15ad72c2fdb39acf09aafa9934912c89bfa08665a.jpeg?width=1200&format=pjpg&optimize=medium',
-              ),
-            ),
-          ),
+          imageUrl: 'assets/images/owl3.jpg',
+          isAsset: true,
         ),
       ),
     ],

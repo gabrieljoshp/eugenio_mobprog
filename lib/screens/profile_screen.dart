@@ -1,5 +1,6 @@
 import 'package:eugenio_mobprog/constants.dart';
 import 'package:eugenio_mobprog/widgets/custom_button.dart';
+import 'package:eugenio_mobprog/widgets/custom_dialogs.dart';
 import 'package:eugenio_mobprog/widgets/custom_font.dart';
 import 'package:eugenio_mobprog/widgets/post_card.dart';
 import 'package:flutter/material.dart';
@@ -16,12 +17,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final List<String> _photos = [
-    'assets/images/owl.jpg',
-    'assets/images/owl2.jpg',
-    'assets/images/owl3.jpg',
-    'assets/images/owl4.jpg',
-  ];
   @override
   Widget build(BuildContext context) {
     debugPrint('USERNAME RECEIVED: "${widget.username}"');
@@ -228,45 +223,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(ScreenUtil().setSp(10)),
-                      child: GridView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: _photos.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount:
-                              MediaQuery.of(context).size.width > 500 ? 3 : 2,
-                          crossAxisSpacing: ScreenUtil().setSp(10),
-                          mainAxisSpacing: ScreenUtil().setSp(10),
-                          childAspectRatio: 1,
-                        ),
-                        itemBuilder: (context, index) {
-                          final img = _photos[index];
-                          return ClipRRect(
-                            borderRadius: BorderRadius.circular(
-                              ScreenUtil().setSp(8),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (_) => Dialog(
-                                    child: InteractiveViewer(
-                                      child: Image.asset(
-                                        img,
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Image.asset(img, fit: BoxFit.cover),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+                    // Photos Tab
+                    _photos(context),
                   ],
                 ),
               ),
@@ -301,4 +259,59 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+}
+
+Widget _photos(BuildContext context) {
+  return GridView.count(
+    primary: false,
+    padding: const EdgeInsets.all(20),
+    crossAxisSpacing: 10,
+    mainAxisSpacing: 10,
+    crossAxisCount: 2,
+    children: <Widget>[
+      GestureDetector(
+        child: Image.network(
+          'https://www.petplace.com/article/breed/media_15ad72c2fdb39acf09aafa9934912c89bfa08665a.jpeg?width=1200&format=pjpg&optimize=medium',
+          scale: 10,
+        ),
+        onTap: () => CustomShowImageDialog(
+          context,
+          imageUrl:
+              'https://www.petplace.com/article/breed/media_15ad72c2fdb39acf09aafa9934912c89bfa08665a.jpeg?width=1200&format=pjpg&optimize=medium',
+        ),
+      ),
+      GestureDetector(
+        onTap: () => CustomShowImageDialog(
+          context,
+          imageUrl:
+              'https://www.petplace.com/article/breed/media_15ad72c2fdb39acf09aafa9934912c89bfa08665a.jpeg?width=1200&format=pjpg&optimize=medium',
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          color: Colors.teal[100],
+          child: Image.network(
+            'https://www.petplace.com/article/breed/media_15ad72c2fdb39acf09aafa9934912c89bfa08665a.jpeg?width=1200&format=pjpg&optimize=medium',
+          ),
+        ),
+      ),
+      GestureDetector(
+        onTap: () => CustomShowImageDialog(
+          context,
+          imageUrl:
+              'https://www.petplace.com/article/breed/media_15ad72c2fdb39acf09aafa9934912c89bfa08665a.jpeg?width=1200&format=pjpg&optimize=medium',
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.teal[200],
+            image: DecorationImage(
+              image: NetworkImage(
+                'https://www.petplace.com/article/breed/media_15ad72c2fdb39acf09aafa9934912c89bfa08665a.jpeg?width=1200&format=pjpg&optimize=medium',
+              ),
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
 }

@@ -5,6 +5,7 @@ import 'screens/home_screen.dart';
 import 'screens/newsfeed_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/profile_screen.dart';
+import 'screens/splash_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -26,15 +27,10 @@ class MainApp extends StatelessWidget {
           initialRoute: '/login',
           routes: {
             '/newsfeed': (context) => const NewsFeedScreen(),
-            '/home': (context) => const HomeScreen(),
+            '/home': (context) => const HomeScreen(username: 'user'),
             '/login': (context) => const LogInScreen(),
             '/register': (context) => const RegisterScreen(),
-            '/profile': (context) {
-              final username =
-                  ModalRoute.of(context)!.settings.arguments as String;
-
-              return ProfileScreen(username: username);
-            },
+            '/splash': (context) => const SplashScreen(),
           },
         );
       },

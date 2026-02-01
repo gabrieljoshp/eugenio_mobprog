@@ -1,5 +1,6 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
 import '../widgets/custom_textformfield.dart';
 import '../widgets/custom_inkwell_button.dart';
 import '../widgets/custom_dialogs.dart';
@@ -13,9 +14,30 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController usernameController = TextEditingController(
+    text: 'user',
+  );
+  TextEditingController passwordController = TextEditingController(
+    text: 'user',
+  );
   final _formKey = GlobalKey<FormState>();
+  void login() {
+    if (usernameController.text == 'user' &&
+        passwordController.text == 'user') {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (build) => HomeScreen(username: usernameController.text),
+        ),
+      );
+    } else {
+      customDialog(
+        context,
+        title: 'Error',
+        content: 'Invalid username or password.',
+      );
+    }
+  }
 
   // Validation method for username
   String? _validateUsername(String? value) {
@@ -33,7 +55,7 @@ class _LogInScreenState extends State<LogInScreen> {
     if (value == null || value.isEmpty) {
       return 'Enter your password';
     }
-    if (value.length < 8) {
+    if (value.length < 4) {
       return 'Password must be at least 8 characters';
     }
     return null;

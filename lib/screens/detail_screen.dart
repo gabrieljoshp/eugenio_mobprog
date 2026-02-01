@@ -1,4 +1,5 @@
 import 'package:eugenio_mobprog/constants.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom_font.dart';
@@ -48,7 +49,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
             children: [
               (widget.imageUrl == '')
                   ? SizedBox(height: ScreenUtil().setHeight(0))
-                  : Image.asset(widget.imageUrl),
+                  : Align(
+                      alignment: Alignment.center,
+                      child: CachedNetworkImage(
+                        imageUrl: widget.imageUrl,
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) =>
+                                CircularProgressIndicator(
+                                  color: FB_DARK_PRIMARY,
+                                  value: downloadProgress.progress,
+                                ),
+                        errorWidget: (context, url, error) =>
+                            Icon(Icons.error, size: 100.sp),
+                      ),
+                    ),
               SizedBox(height: ScreenUtil().setHeight(20)),
               Container(
                 padding: EdgeInsets.symmetric(
@@ -59,9 +73,21 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   children: [
                     (widget.profileImageUrl == '')
                         ? const Icon(Icons.person)
-                        : CircleAvatar(
-                            radius: ScreenUtil().setSp(25),
-                            backgroundImage: AssetImage(widget.profileImageUrl),
+                        : ClipOval(
+                            child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              width: 30,
+                              height: 30,
+                              imageUrl: widget.profileImageUrl,
+                              progressIndicatorBuilder:
+                                  (context, url, downloadProgress) =>
+                                      CircularProgressIndicator(
+                                        color: FB_DARK_PRIMARY,
+                                        value: downloadProgress.progress,
+                                      ),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error, size: 100.sp),
+                            ),
                           ),
                     SizedBox(width: ScreenUtil().setWidth(10)),
                     Column(

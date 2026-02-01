@@ -16,7 +16,7 @@ class NewsFeedScreen extends StatelessWidget {
           numOfLikes: 2000,
           date: 'October 11',
           profileImageUrl:
-              'https://scontent.fmnl13-2.fna.fbcdn.net/v/t39.30808-6/406526794_7259777220712504_6101170190107026818_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFD_niNN58K1JGJo4g7_UDECrOkklt8aEQKs6SSW3xoRLrPmjRye9OkRWXVWTr5qFl5fSVzwOy86nlTYngx6GUr&_nc_ohc=Pn9xhw9o7hQQ7kNvwFZxGgH&_nc_oc=AdmOXfmXF_sPxDZWUxZGTEIDpuFBOV8HSInIS-KiEG_9IgY0NiBog8NPzeKuxIKCPNI&_nc_zt=23&_nc_ht=scontent.fmnl13-2.fna&_nc_gid=wt12lHyTuLD-H-PMJ0uOpg&oh=00_Afq8V4QdMYX-0UMTbS4Lycu01QhzbbrPoHD76tKL0v4Vog&oe=697C6FC7',
+              'https://scontent.fmnl40-2.fna.fbcdn.net/v/t39.30808-6/406526794_7259777220712504_6101170190107026818_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFD_niNN58K1JGJo4g7_UDECrOkklt8aEQKs6SSW3xoRLrPmjRye9OkRWXVWTr5qFl5fSVzwOy86nlTYngx6GUr&_nc_ohc=C7OceTNF0UkQ7kNvwGIaVeX&_nc_oc=AdmkZL_ZKAFU0bqGVumLRVXF9djNFasBT25hJy-HfPuqs2qAoXmEO-mhZmTi5hltCI0&_nc_zt=23&_nc_ht=scontent.fmnl40-2.fna&_nc_gid=IxnoEJd59bwxONWg6oKN5g&oh=00_AftXNShw0PczHpKRGm66XCSwPl2c6kOgv7ulypz_He-h0g&oe=69857207',
           imageUrl:
               'https://inaturalist-open-data.s3.amazonaws.com/photos/1307188/large.jpg',
         ),
@@ -34,7 +34,7 @@ class NewsFeedScreen extends StatelessWidget {
           numOfLikes: 200,
           date: 'December 2',
           profileImageUrl:
-              'https://scontent.fmnl13-2.fna.fbcdn.net/v/t39.30808-6/406526794_7259777220712504_6101170190107026818_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFD_niNN58K1JGJo4g7_UDECrOkklt8aEQKs6SSW3xoRLrPmjRye9OkRWXVWTr5qFl5fSVzwOy86nlTYngx6GUr&_nc_ohc=Pn9xhw9o7hQQ7kNvwFZxGgH&_nc_oc=AdmOXfmXF_sPxDZWUxZGTEIDpuFBOV8HSInIS-KiEG_9IgY0NiBog8NPzeKuxIKCPNI&_nc_zt=23&_nc_ht=scontent.fmnl13-2.fna&_nc_gid=wt12lHyTuLD-H-PMJ0uOpg&oh=00_Afq8V4QdMYX-0UMTbS4Lycu01QhzbbrPoHD76tKL0v4Vog&oe=697C6FC7',
+              'https://scontent.fmnl40-2.fna.fbcdn.net/v/t39.30808-6/406526794_7259777220712504_6101170190107026818_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFD_niNN58K1JGJo4g7_UDECrOkklt8aEQKs6SSW3xoRLrPmjRye9OkRWXVWTr5qFl5fSVzwOy86nlTYngx6GUr&_nc_ohc=C7OceTNF0UkQ7kNvwGIaVeX&_nc_oc=AdmkZL_ZKAFU0bqGVumLRVXF9djNFasBT25hJy-HfPuqs2qAoXmEO-mhZmTi5hltCI0&_nc_zt=23&_nc_ht=scontent.fmnl40-2.fna&_nc_gid=IxnoEJd59bwxONWg6oKN5g&oh=00_AftXNShw0PczHpKRGm66XCSwPl2c6kOgv7ulypz_He-h0g&oe=69857207',
         ),
         PostCard(
           userName: 'Cyrus Robles',
@@ -98,7 +98,7 @@ class NewsFeedScreen extends StatelessWidget {
       PostCard(
         userName: 'Umamusume: Pretty Derby',
         imageUrl:
-            'https://upload.wikimedia.org/wikipedia/en/3/31/Umamusume_Pretty_Derby_game_cover.jpg',
+            'https://images.steamusercontent.com/ugc/15360591684379468045/75EE5E52047D949B29BDB24D8A0D9C242BB9911B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
         profileImageUrl:
             'https://play-lh.googleusercontent.com/yN6cCSP7UB_2bsvlCxrtv-FUpEt1IvEFwr0Ucb3wr39QsAd5PLsueSVXuCinDbE4rifhMlX4YNtpLpkGnpsLhCQ=w240-h480-rw',
         postContent: 'Anime and Horse Racing Combined!',

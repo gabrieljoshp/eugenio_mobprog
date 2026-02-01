@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: FB_DARK_PRIMARY,
         showSelectedLabels: false, //selected item
         showUnselectedLabels: false, //unselected item
         onTap: _onTappedBar,
@@ -74,7 +74,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
-        selectedItemColor: FB_DARK_PRIMARY,
+        unselectedItemColor: FB_TEXT_COLOR_WHITE,
+        selectedItemColor: Colors.white,
         currentIndex: _selectedIndex,
       ),
     );
